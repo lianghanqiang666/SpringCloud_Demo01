@@ -8,7 +8,12 @@ spring:
     url: jdbc:mysql://localhost:3306/db2022?characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: 123456
-
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
