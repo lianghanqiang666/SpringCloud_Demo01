@@ -15,16 +15,16 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/order")
 public class OrderController {
-    public static final String PAYMENT_URL = "http://localhost:8000";
+    public static final String PAYMENT_SRV = "http://CLOUD-PROVIDER-PAYMENT";
     @Resource
     private RestTemplate restTemplate;
     @GetMapping("create")
     public CommonResult<Payment> create(Payment payment){
-        return restTemplate.postForObject(PAYMENT_URL+"/payment/create",payment, CommonResult.class);
+        return restTemplate.postForObject(PAYMENT_SRV+"/payment/create",payment, CommonResult.class);
     }
 
     @GetMapping("/getPayment/{id}")
     public CommonResult<Payment> getPayment(@PathVariable("id") Long id){
-        return restTemplate.getForObject(PAYMENT_URL+"/payment/getPaymentById?id="+id,CommonResult.class);
+        return restTemplate.getForObject(PAYMENT_SRV+"/payment/getPaymentById?id="+id,CommonResult.class);
     }
 }

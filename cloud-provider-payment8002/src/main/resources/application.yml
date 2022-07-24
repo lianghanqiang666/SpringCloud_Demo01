@@ -1,8 +1,8 @@
 server:
-  port: 80
+  port: 8002
 spring:
   application:
-    name: cloud-consumer-order80
+    name: cloud-provider-payment
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/db2022?characterEncoding=utf-8&serverTimezone=UTC
@@ -14,7 +14,10 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002:7002/eureka
-
+  instance:
+    instance-id: payment8002
+    prefer-ip-address: true  #访问路径可以显示ip地址
+    lease-renewal-interval-in-seconds: 1 #Eureka客户端向服务器发送心跳的时间间隔（默认是30秒）
+    lease-expiration-duration-in-seconds: 2 #Eureka在收到最后一次心跳后的等待时间上限（默认是90秒） ，超时将剔除服务
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.lhq.cloud-consumer-order80.entity
